@@ -1,0 +1,78 @@
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+}
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  text-align: center;
+  padding: 20px;
+}
+
+.error-image {
+  width: 150px;
+  max-width: 80%;
+  margin-bottom: 20px;
+}
+
+.error-text {
+  color: #000000;
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+.Home-container{
+  width: 100vw; 
+  background-color: #ffffff;
+}
+.both-side-container{
+  width: 100%; 
+  background-color: transparent;
+}
+.retry-button {
+  background-color: #4fa94d;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.retry-button:hover {
+  background-color: #3d8b3d;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .error-image {
+    width: 400px;
+    height: 400px ; 
+  }
+  .error-text {
+    font-size: 18px;
+  }
+  .retry-button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .error-image {
+    width: 200px;
+  }
+  .error-text {
+    font-size: 16px;
+  }
+  .retry-button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,154 @@
+/* Import Roboto Font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+.post-item-container {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f4f7f6;
+  min-height: 100vh;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+.post-item-card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  width: 100%;
+  max-width: 700px;
+  box-sizing: border-box;
+}
+
+.post-item-heading {
+  font-size: 28px;
+  color: #2c3e50;
+  text-align: center;
+  margin: 0 0 10px 0;
+}
+
+.post-item-subheading {
+  font-size: 16px;
+  color: #7f8c8d;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #34495e;
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #bdc3c7;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* --- NEW: Button Group for Layout --- */
+.button-group {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.submit-button,
+.come-back-button {
+  flex-grow: 1; /* Makes both buttons share the space equally */
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  font-weight: 700;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, opacity 0.3s;
+}
+
+.submit-button {
+  background-color: #27ae60;
+  color: #ffffff;
+}
+
+.submit-button:hover {
+  background-color: #229954;
+}
+
+.submit-button:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+
+/* --- NEW: "Come Back" Button Style --- */
+.come-back-button {
+  background-color: #6c757d;
+  color: #ffffff;
+}
+
+.come-back-button:hover {
+  background-color: #5a6268;
+}
+
+.api-response {
+  margin-top: 20px;
+  padding: 12px;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.api-response.success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.api-response.error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .post-item-container {
+    padding: 20px;
+  }
+  .post-item-card {
+    padding: 30px;
+  }
+  .post-item-heading {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .post-item-card {
+    padding: 20px;
+  }
+  .post-item-heading {
+    font-size: 20px;
+  }
+  /* Stacks buttons on small screens */
+  .button-group {
+    flex-direction: column;
+  }
+}
