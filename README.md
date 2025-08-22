@@ -1,70 +1,100 @@
-# Getting Started with Create React App
+Vaagdevi Exchange Platform
+Welcome to the Vaagdevi Exchange Platform! This is a full-stack web application built from the ground up to create a peer-to-peer rental marketplace exclusively for college students.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Think of it like a community closet for our campus. Instead of buying a drafter for a single semester or a camera for a weekend trip, students can rent one from a fellow student. It’s all about making college life more affordable and sustainable by letting students earn money from their unused items and save money by renting what they need.
 
-## Available Scripts
+Live Demo
+Frontend (Vercel): https://vaagexchangeapp.vercel.app/
 
-In the project directory, you can run:
+Features
+User Authentication: Secure user registration and login system using JWT (JSON Web Tokens).
 
-### `npm start`
+Product Management: Users can post, view, update, and delete their own product listings.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Dynamic Categories: Browse products across multiple categories including Laptops, Bikes, Cameras, Drafters, and GATE Books.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Search Functionality: Filter products within each category by name.
 
-### `npm test`
+Rental System: A complete workflow for users to request rentals and for owners to approve or reject them.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Notifications: Users receive notifications for new rental requests and status updates on their rentals.
 
-### `npm run build`
+Responsive Design: A clean, mobile-first user interface that is fully responsive and works on all devices.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Technology Stack
+This project is built with a modern and robust technology stack:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Frontend: React.js (Class Components)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Backend: Node.js, Express.js
 
-### `npm run eject`
+Database: MySQL with Sequelize ORM
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Authentication: JWT (JSON Web Tokens)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Image Handling: Multer for file uploads
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Styling: Styled-Components and CSS
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+How It's Built: The User Journey
+Let's walk through the main feature: renting a bike. This shows how the frontend and backend collaborate.
 
-## Learn More
+A student logs in. The React app sends the email and password to the /api/auth/login endpoint on the backend. The backend checks the database, and if the credentials are correct, it sends back a JWT, which the React app saves in the browser's cookies.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+They browse the "Bikes" page. The React app navigates to the /bikes page. It then makes a GET request to the backend at /api/products/bikes. The backend queries the database for all bikes and sends back a list of bike data as JSON. The React app then uses this data to display all the available bikes in a clean, card-based layout.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The student decides to rent a bike. They click a "Rent" button on a specific bike. This triggers a POST request to the /api/rentals endpoint, sending along the bike's ID and the rental dates. Crucially, it also sends the user's JWT to prove who they are.
 
-### Code Splitting
+The bike's owner gets notified. The backend receives the rental request. It creates a new "pending" rental in the database and also creates a notification for the bike's owner.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+The owner approves the request. The owner logs in and goes to their "My Listings" page, which fetches all their pending requests from /api/rentals/my-listings. They see the new request and click "Approve." This sends a PATCH request to /api/rentals/:id/status, telling the backend to change the rental's status to "active."
 
-### Analyzing the Bundle Size
+The renter is notified. The backend updates the rental status and creates a new notification for the original renter, letting them know their request was approved. The next time the renter visits their "My Rentals" page, they'll see the updated status.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+This end-to-end flow is the core of the application and demonstrates how the frontend and backend work in tandem to create a complete and interactive experience.
 
-### Making a Progressive Web App
+Setup and Running Locally
+Backend Setup (/vaagdeviBackend)
+Navigate to the backend directory:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Bash
 
-### Advanced Configuration
+cd vaagdeviBackend
+Install dependencies:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Bash
 
-### Deployment
+npm install
+Set up your environment variables:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Create a .env file in the backend root.
 
-### `npm run build` fails to minify
+Add your database credentials and JWT secret:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+DB_HOST=your_db_host
+DB_USER=your_db_user
+DB_PASSWORD=your_db_password
+DB_NAME=your_db_name
+JWT_SECRET=your_super_secret_key
+Run the server:
+
+Bash
+
+npm start
+Frontend Setup (/vaagfrontend)
+Navigate to the frontend directory:
+
+Bash
+
+cd vaagfrontend/myapp
+Install dependencies:
+
+Bash
+
+npm install
+Start the development server:
+
+Bash
+
+npm start
+The application will open automatically at http://localhost:3000.
